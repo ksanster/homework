@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<ArrayOfStudent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Student>
+    <lastName>Пустота</lastName>
+    <firstName>Петр</firstName>
+    <university>МГУ</university>
+    <faculty />
+    <course>5</course>
+    <department />
+    <group>1</group>
+    <city>Спб</city>
+    <age>19</age>
+  </Student>
+  <Student>
+    <lastName>Чапаев</lastName>
+    <firstName>Василий</firstName>
+    <university>МГУ </university>
+    <faculty />
+    <course>6</course>
+    <department />
+    <group>1</group>
+    <city>Спб</city>
+    <age>45</age>
+  </Student>
+  <Student>
+    <lastName>Фурманов</lastName>
+    <firstName>Дмитрий</firstName>
+    <university>МГУ</university>
+    <faculty />
+    <course>3</course>
+    <department />
+    <group>1</group>
+    <city>Спб</city>
+    <age>33</age>
+  </Student>
+  <Student>
+    <lastName>Котовский</lastName>
+    <firstName>Григорий</firstName>
+    <university>МГУ</university>
+    <faculty />
+    <course>6</course>
+    <department />
+    <group>1</group>
+    <city>Спб</city>
+    <age>19</age>
+  </Student>
+  <Student>
+    <lastName>Попова</lastName>
+    <firstName>Анна</firstName>
+    <university>МГУ</university>
+    <faculty />
+    <course>6</course>
+    <department />
+    <group>1</group>
+    <city>Спб</city>
+    <age>17</age>
+  </Student>
+  <Student>
+    <lastName>Жербунов</lastName>
+    <firstName>Николай</firstName>
+    <university>МГУ</university>
+    <faculty />
+    <course>1</course>
+    <department />
+    <group>1</group>
+    <city>Спб</city>
+    <age>20</age>
+  </Student>
+  <Student>
+    <lastName>Барболин</lastName>
+    <firstName>Сергей</firstName>
+    <university>МГУ</university>
+    <faculty />
+    <course>1</course>
+    <department />
+    <group>1</group>
+    <city>Спб</city>
+    <age>51</age>
+  </Student>
+</ArrayOfStudent>
