@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -9,6 +10,8 @@ public class GameController : MonoBehaviour
     private int maxEnemyKilled;
     [SerializeField]
     private EnemySpawner spawner;
+    [SerializeField]
+    private TMP_Text killedLabel;
     
     [SerializeField]
     private GameObject winBackgroundImage;
@@ -25,6 +28,7 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        killedLabel.text = $"Killed {enemyKilled} of {maxEnemyKilled}";
     }
     
     private void StopGame(bool loose)
@@ -47,7 +51,7 @@ public class GameController : MonoBehaviour
     public void KillEnemy()
     {
         enemyKilled++;
-        Debug.Log($"Killed {enemyKilled} of {maxEnemyKilled}");
+        killedLabel.text = $"Killed {enemyKilled} of {maxEnemyKilled}";
         if (enemyKilled >= maxEnemyKilled)
             StopGame(false);
     }

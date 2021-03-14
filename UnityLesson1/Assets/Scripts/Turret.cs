@@ -42,5 +42,11 @@ namespace DefaultNamespace
                 bullet.Target = player.position;
             }
         }
+        
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, maxRange);
+        }
     }
 }
