@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Lesson5
 {
@@ -9,15 +9,23 @@ namespace Lesson5
         private const float ExplosionForce = 1000f;
         [SerializeField]
         private Grenader player;
+        [SerializeField]
+        private float maxChargeTime = 5f; 
         
         [SerializeField]
         private Rigidbody[] environment;
         
+        [SerializeField]
+        private Slider jumpSlider;
+        
         private Camera mainCamera;
+        private float startChargeTime;
+        
 
         private void Start()
         {
             mainCamera = Camera.main;
+            jumpSlider.maxValue = maxChargeTime;
         }
 
         private void Update()
@@ -28,7 +36,20 @@ namespace Lesson5
                 grenade.OnCollide += Explode;
             }
             if (Input.GetKeyDown(KeyCode.Space))
-                player.Jump();
+                startChargeTime = Time.time;
+            
+            if (startChargeTime > 0)
+            {
+                var mult = Mathf.Clamp(Time.time - startChargeTime, 0, maxChargeTime);
+                jumpSlider.value = mult;
+                if (Input.GetKeyUp(KeyCode.Space))
+                {
+                    player.Jump(1 + mult);
+                    startChargeTime = 0;
+                    jumpSlider.value = 0;
+                }                
+            }
+                
         }
 
         private void FixedUpdate()
@@ -52,7 +73,7 @@ namespace Lesson5
                     item.AddExplosionForce(ExplosionForce, t.position, GrenadeRange);
             }
             
-            GameObject.Destroy(t.gameObject);
+            Destroy(t.gameObject);
         }
 
 
