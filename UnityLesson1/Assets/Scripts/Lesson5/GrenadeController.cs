@@ -1,3 +1,4 @@
+using Lesson8;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,8 +17,8 @@ namespace Lesson5
         private Rigidbody[] environment;
         
         [SerializeField]
-        private Slider jumpSlider;
-        
+        private GameObject explosionPrefab;
+
         private Camera mainCamera;
         private float startChargeTime;
         
@@ -25,7 +26,6 @@ namespace Lesson5
         private void Start()
         {
             mainCamera = Camera.main;
-            jumpSlider.maxValue = maxChargeTime;
         }
 
         private void Update()
@@ -41,12 +41,10 @@ namespace Lesson5
             if (startChargeTime > 0)
             {
                 var mult = Mathf.Clamp(Time.time - startChargeTime, 0, maxChargeTime);
-                jumpSlider.value = mult;
                 if (Input.GetKeyUp(KeyCode.Space))
                 {
                     player.Jump(1 + mult);
                     startChargeTime = 0;
-                    jumpSlider.value = 0;
                 }                
             }
                 
@@ -73,6 +71,12 @@ namespace Lesson5
                     item.AddExplosionForce(ExplosionForce, t.position, GrenadeRange);
             }
             
+            var explosion = Instantiate(explosionPrefab, t.position, Quaternion.identity);
+            var sound = explosion.GetComponent<AudioSource>();
+            sound.volume = SoundManager.Instance.Volume;
+            sound.Play();
+            Destroy(explosion, sound.clip.length);
+
             Destroy(t.gameObject);
         }
 
