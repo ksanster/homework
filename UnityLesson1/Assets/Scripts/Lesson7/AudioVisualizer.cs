@@ -33,9 +33,28 @@ namespace Lesson7
             lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
             lineRenderer.widthMultiplier = 0.1f;
             lineRenderer.positionCount = NumPoints;
-            lineRenderer.startColor = Color.red;
-            lineRenderer.endColor = Color.blue;
+            lineRenderer.colorGradient = CreateGradient();
+        }
 
+        private Gradient CreateGradient()
+        {
+            var result = new Gradient();
+            result.mode = GradientMode.Blend;
+            var colors = new []
+            {
+                new GradientColorKey(Color.red, 0f),
+                new GradientColorKey(Color.blue, 0.5f),
+                new GradientColorKey(Color.red, 1f)
+            };
+            var alphas = new []
+            {
+                new GradientAlphaKey(1, 0), 
+                new GradientAlphaKey(1, 0.5f), 
+                new GradientAlphaKey(1, 1f) 
+            };
+            
+            result.SetKeys(colors, alphas);
+            return result;
         }
 
         private void Update()
