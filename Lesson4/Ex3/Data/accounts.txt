@@ -1,4 +1,0 @@
-﻿main,1235
-Admin,qwerty
-admin@geekbrains.ru,11111
-root,GeekBrains
