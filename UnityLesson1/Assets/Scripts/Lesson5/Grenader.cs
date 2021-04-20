@@ -24,6 +24,15 @@ namespace Lesson5
             body = GetComponent<Rigidbody>();
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.tag == "Speed")
+            {
+                Destroy(other.gameObject);
+                speed *= 1.5f;
+            }
+        }
+
         public Grenade ThrowGrenade()
         {
             var pos = transform.TransformPoint(placeholder.localPosition);
@@ -39,9 +48,9 @@ namespace Lesson5
             body.AddForce(direction * speed);
         }
         
-        public void Jump()
+        public void Jump(float multiplier)
         {
-            body.AddForce(Vector3.up * jumpForce); 
+            body.AddForce(Vector3.up * jumpForce * multiplier); 
         }
         
         public void LookTo(Vector3 target)

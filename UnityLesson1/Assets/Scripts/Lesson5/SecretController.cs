@@ -1,4 +1,4 @@
-using System;
+using Lesson6;
 using UnityEngine;
 
 namespace Lesson5
@@ -10,7 +10,7 @@ namespace Lesson5
         [SerializeField]
         private SecretTarget secretTarget;
         [SerializeField]
-        private GameObject door;
+        private Door door;
 
         private void Awake()
         {
@@ -18,8 +18,7 @@ namespace Lesson5
             {
                 if (go == secretCube)
                 {
-                    Debug.Log("Door is open!");
-                    Destroy(door);
+                    door.Open();                    
                 }
             };
         }
