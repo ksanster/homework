@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Lesson8;
 using UnityEngine;
 
 namespace Lesson5
@@ -58,6 +59,8 @@ namespace Lesson5
         {
             var startTime = Time.time;
             yield return new WaitUntil(() => (Time.time - startTime) > 5f || state != State.Wait);
+         
+            SoundManager.Instance.Pitch = 1f;
             SetState(State.Return);
         }
         
@@ -73,6 +76,7 @@ namespace Lesson5
             
             if (state == State.Attack || state == State.Pursuit || state == State.Attetnion)
             {
+                SoundManager.Instance.Pitch = Mathf.Lerp(1f, 1.2f, 1 - distance / AttentionRange);
                 LookTo(target);
                 if (state == State.Pursuit)
                     transform.position = Vector3.Lerp(transform.position, target.position, Time.deltaTime * speed);
