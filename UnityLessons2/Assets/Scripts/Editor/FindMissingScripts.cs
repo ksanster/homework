@@ -1,4 +1,4 @@
-using System;
+#if UNITY_EDITOR
 using System.Threading;
 using UnityEditor;
 using UnityEngine;
@@ -35,14 +35,14 @@ public class FindMissingScripts : EditorWindow
     
     private static void FindInScene()
     {
-        var go = FindObjectsOfType(typeof(MonoBehaviour));
+        var go = FindObjectsOfType(typeof(Component));
         gameObjectCount = go.Length; 
         componentCount = 0;
         missingCount = 0;
         currentIndex = 0;
         foreach (var obj in go)
         {
-            var gameObject = (obj as MonoBehaviour).gameObject;
+            var gameObject = (obj as Component).gameObject;
             FindInGO(gameObject);
             var progress = (float)currentIndex / gameObjectCount;
             EditorUtility.DisplayProgressBar("Progress", "Find missing scripts", progress);
@@ -78,3 +78,4 @@ public class FindMissingScripts : EditorWindow
         }
     }
 }
+#endif

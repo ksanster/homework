@@ -8,17 +8,17 @@ namespace Game.FX
         [SerializeField]
         private float fadeSpeed;
         
-        private Light light;
+        private Light flash;
         
         private void Start()
         {
-            light = GetComponent<Light>();
+            flash = GetComponent<Light>();
         }
 
         private void Update()
         {
-            light.intensity = Mathf.Lerp(light.intensity, 0, fadeSpeed * Time.deltaTime);
-            if (light.intensity < MinLightIntensity)
+            flash.intensity = Mathf.Lerp(flash.intensity, 0, fadeSpeed * Time.deltaTime);
+            if (flash.intensity < MinLightIntensity)
             {
                 Destroy(gameObject);
             }
