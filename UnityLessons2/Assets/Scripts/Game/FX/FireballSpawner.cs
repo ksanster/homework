@@ -10,21 +10,35 @@ namespace Game.FX
         
         [SerializeField]
         private float deltaTimeInSeconds;
-
-
+        
+        [SerializeField]
+        private bool autoSpawn;
+        
         private void Start()
         {
-            StartCoroutine(Spawn());
+            if (autoSpawn)
+                StartCoroutine(Spawn());
         }
 
         private IEnumerator Spawn()
         {
             while (true)
             {
-                var fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
-                fireball.Direction = transform.rotation * Vector3.forward;
+                CreateFireball();
                 yield return new WaitForSeconds(deltaTimeInSeconds);
             }
+        }
+        
+        private void CreateFireball()
+        {
+            var direction = transform.rotation * Vector3.forward;
+            var fireball = Instantiate(fireballPrefab, (transform.position + 2f * direction), Quaternion.identity);
+            fireball.Direction = direction;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            CreateFireball();
         }
     }
 }
