@@ -23,7 +23,6 @@ namespace Game
         
         private void KillMyself(Vector3 forcePosition, Vector3 forceDirection)
         {
-            Debug.Log("kill");
             IsAlive = false;
             rigidBodies.OrderBy(body => (body.position - forcePosition).sqrMagnitude).First().AddForce(Force * forceDirection, ForceMode.Impulse);
         }

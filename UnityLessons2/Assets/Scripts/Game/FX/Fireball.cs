@@ -14,6 +14,10 @@ namespace Game.FX
 
         private void OnTriggerEnter(Collider other)
         {
+            Debug.Log(LayerMask.LayerToName(other.gameObject.layer));
+            if (other.gameObject.layer != LayerMask.NameToLayer("Enemy"))
+                return;
+            
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
